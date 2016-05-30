@@ -1,0 +1,115 @@
+<div>
+	   <div class="jumbotron">
+  		<h1>Welcome To CustomDocs</h1>
+  		<p>Select the appropriate document to generate!</p>
+  		<a class="btn btn-primary btn-lg" ng-href="#/appeals">Appeal Letter</a>
+      <a class="btn btn-primary btn-lg" ng-href="#/collection">Collection Letter</a>
+  		<a class="btn btn-primary btn-lg" ng-href="#/pcpletter">PCP Letter</a>
+	   </div>
+		<div>
+		<ul class="nav nav-tabs">
+        <li class="btn btn-default" ng-click="showAppeals()"><span >Open Appeal Letters</span></li>
+        <li class="btn btn-primary"  ng-click="showCollections()"><span>Open Collection Letters</span></li>
+        <li class="btn btn-default"  ng-click="showPCPLetters()"><span>Open PCP Letters</span></li>
+    </ul>
+  <div>
+			<div ng-show="dash" class= "tab-pane fade active in">
+        	<div>
+            		<table class='table table-bordered'>
+                	<th colspan="6">Open Appeal Letter Details</th>
+                	<tr>
+                      <th>Patient Name</th>
+                      <th>Claim Id</th>
+                      <th>Date Of Service</th>
+                      <th>Date Created</th>
+                      <th>Edit</th>
+                      <th>Remove</th>
+                	</tr>
+                	<tr ng-repeat="details in appealDetails">
+                    <td>{{details.patientName}}</td>
+                    <td><a ng-href="/customdocs/service/appealsletter?claimId={{details.claimId}}" title="Regenerate this letter">{{details.claimId}}</a></td>
+                    <td>{{details.dateOfService}}</td>
+                    <td>{{details.dateCreated}}</td>
+                    <td><button class="btn btn-default btn-sm" ng-click="edit(details.claimId)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                    <td><button class="btn btn-default btn-sm" ng-click="remove(details.claimId)"><span class="glyphicon glyphicon-trash"></span></button></td>
+                	</tr>
+            		</table>
+    			</div>
+      </div>
+	
+  <div class="tab-pane fade active in" ng-show="secondDash">
+      <div>
+            <div>
+            <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search Collection Letters" ng-model="collectionFilter">
+            </div>
+                <table class='table table-bordered' id="coltable">
+                  <th colspan="7">Open Collection Letter Details <span><button class="btn btn-default btn-sm" ng-click="genCollectionBatch()">Generate Selected Letters</button></span><span>
+                  <button class="btn btn-default btn-sm" ng-click="prevPage()">Previous Page</button></span>
+                  <span><button class="btn btn-default btn-sm" ng-click="nextPage()">Next Page</button></span>
+
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Entries Per Page <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a ng-click="setPageSize(10)">10</a></li>
+                        <li><a ng-click="setPageSize(20)">20</a></li>
+                        <li><a ng-click="setPageSize(40)">40</a></li>
+                        <li><a ng-click="setPageSize(60)">60</a></li>
+                        <li><a ng-click="setPageSize(80)">80</a></li>
+                        <li><a ng-click="setPageSize(200)">200</a></li>
+                      </ul>
+                    </div> <span>{{pageSize}}</span>
+                   </th>
+                  <tr>
+                      <th ng-click="setOrder('patientName')">Patient Name</th>
+                      <th ng-click="setOrder('facilityName')">Facility Name</th>
+                      <th ng-click="setOrder('payment')">Amount Due</th>
+                      <th ng-click="setOrder('dateCreated')">Date Created</th>
+                      <th ng-click="setOrder('letterType')">Letter Type</th>
+                      <th>Add to Batch</th>
+                      <th>Remove</th>
+                  </tr>
+                  <tr ng-repeat="details in collectionDetails | filter:collectionFilter | orderBy:orderValue:reverse | limitTo: pageSize: currentStart ">
+                    <td class="col-md-2">{{details.patientName}}</td>
+                    <td class="col-md-2">{{details.facilityName}}</td>
+                    <td class="col-md-2">$<span><input type="text" value="{{details.payment}}" ng-model="details.payment" ng-model-options="{updateOn: 'blur'}" ng-change="editCollection({collectionId: details.collectionId, payment: details.payment})"></span>
+                    <span ng-int="recordFlag[details.collectionId] = false" ng-show="recordFlag[details.collectionId]">Record Updated!</span></td>
+                    <td class="col-md-2">{{details.dateCreated}}</td>
+                    <td class="col-md-2"><select class="form-control" ng-model="details.letterType">
+                      <option value="LetterOne">First Notice</option>
+                      <option value="LetterTwo">Final Notice</option>
+                        </select>
+                    </td>
+                    <td class="col-md-1"><button id="batchid" class="btn btn-default btn-sm" ng-click="addToBatch(details, $index)"><span class="glyphicon glyphicon-ok"></span></button></td>
+                  <td class="col-md-1"><button class="btn btn-default btn-sm" ng-click="removeCollection(details.collectionId)"><span class="glyphicon glyphicon-trash"></span></button></td>
+                  </tr>
+
+                </table>
+          </div>
+      </div>
+  </div>
+    <div ng-show="pcp" class= "tab-pane fade active in">
+          <div>
+                <table class='table table-bordered'>
+                  <th colspan="5">Open PCP Letter Details</th>
+                  <tr>
+                      <th>Patient Name</th>
+                      <th>Amount Due</th>
+                      <th>Date Created</th>
+                      <th>Edit</th>
+                      <th>Remove</th>
+                  </tr>
+                  <tr ng-repeat="details in pcpLetters">
+                    <td>{{details.patientId}}</td>
+                    <td>{{details.amountDue | currency}}</td>
+                    <td>{{details.dateCreated}}</td>
+                    <td><button class="btn btn-default btn-sm" ng-click=""><span class="glyphicon glyphicon-edit"></span></button></td>
+                    <td><button class="btn btn-default btn-sm" ng-click="removePCPLetter(details.pcpId)"><span class="glyphicon glyphicon-trash"></span></button></td>
+                  </tr>
+                </table>
+          </div>
+      </div>
+  </div>
+</div>

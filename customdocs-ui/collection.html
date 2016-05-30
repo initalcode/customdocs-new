@@ -1,0 +1,26 @@
+<form class="form-horizontal" name="collectionForm" novalidate>
+  <fieldset>
+    <legend>Generate Collection Letter</legend>
+    <select-field fields="collectionFields" model="selectedValue" add-entity="addEntity(addEntityLink)"></select-field>
+      <div class="form-group">
+        <label for="inputAmountDue" class="col-lg-2 col-md-2 control-label">Amount Due</label> 
+        <div class="col-lg-10 col-md-10">
+        <input type="text" class="form-control" ng-model="selectedAmountDue" required/> <br>
+      </div>
+
+        <label for="letterType" class="col-lg-2 col-md-2 control-label">Letter Type</label>
+          <div class="col-lg-10 col-md-10">
+        <select class="form-control" ng-model="letterType" required> 
+              <option value="LetterOne">First Collection Letter</option>
+              <option value="LetterTwo">Second Collection Letter</option>
+        </select> 
+      </div>
+      </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-md-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default" ng-click="addEntity()">Cancel</button>
+        <button type="submit" class="btn btn-primary" ng-disabled="collectionForm.$invalid" ng-click="genCollectionLetter()">Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

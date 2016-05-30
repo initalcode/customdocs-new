@@ -1,0 +1,12 @@
+<form class="form-horizontal" name="insuranceEntry">
+  <fieldset>
+    <legend>{{editVar}} Entry</legend>
+    <form-field fields="insuranceFields" model="dataObj"></form-field>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary" ng-disabled="insuranceEntry.$invalid" ng-click='saveInsurance()'>Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

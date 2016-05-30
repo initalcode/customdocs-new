@@ -1,0 +1,14 @@
+    <div>
+      <div ng-repeat = "field in fields" ng-form="{{field.fieldId}}" novalidate>
+       <div class="form-group" ng-class="{'has-error': {{field.fieldId}}.$dirty && {{field.fieldId}}.$invalid }">
+          <label class="col-lg-2 control-label">{{field.fieldName}} <span ng-show="{{field.required}}">*</span></label>
+              <div class="col-lg-8">
+              <input class="form-control" ng-model='model[field.fieldId]' placeholder="{{field.placeholder}}" type="{{field.type}}" ng-pattern="field.pattern" ng-required="{{field.required}}"/>
+              <div role="alert">
+                  <span class="error" ng-show="{{field.fieldId}}.$error.required && {{field.fieldId}}.$dirty">
+                          Required!</span>
+              </div>
+              </div>
+            </div>
+       </div>
+     </div>

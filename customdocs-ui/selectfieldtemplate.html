@@ -1,0 +1,17 @@
+<div>
+<div class="form-group" ng-repeat="field in fields">
+      <label for="select" class="col-lg-2 control-label col-md-2">Select {{field.fieldName}}</label>
+    <div class="col-lg-6 col-md-6">
+        <select class="form-control" required id="select" ng-options="data as data[field.showValue] for data in field.data | filter:selectFilter" ng-model="model[field.fieldName]">
+        </select>
+  	<br>
+     </div>
+     <div class="col-lg-2 col-md-2">
+         <input type="text" class="form-control" placeholder="Search" ng-model="selectFilter"> 
+          </div>
+      <button ng-click="addEntity({addEntityLink:field.addLink})" type="button" class="btn btn-default btn-md" >
+       Add
+      </button>
+    
+</div>
+</div>

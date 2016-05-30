@@ -1,0 +1,27 @@
+<table class="table table-striped table-hover ">
+ <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" ng-model="patientFilter">
+        </div>
+      </form>
+  <thead>
+    <tr>
+      <th>Patient Name</th>
+      <th>Date of Birth</th>
+      <th>Account ID</th>
+      <th>Insurance ID</th>
+      <th>Remove</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat='patient in patients | filter:patientFilter'>
+      <td>{{patient.name}}</td>
+      <td>{{patient.dateOfBirth}}</td>
+      <td>{{patient.accountId}}</td>
+      <td>{{patient.insId}}</td>
+      <td title="Remove this patient"><button class="btn btn-danger btn-sm" ng-click="removePatient(patient.id)"><span class="glyphicon glyphicon-remove-circle"></span></button></td>
+      <td title="Edit this patient"><button class="btn btn-info btn-sm" ng-click="goEditRoute(patient.id)"><span class="glyphicon glyphicon-edit"></span</button></td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,11 @@
+{
+  "name": "my-bower",
+  "description": "New project to learn angular",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap-sass-official": "~3.3.4"
+  },
+  "devDependencies": {
+    "angular-ui-grid": "~3.0.0-rc.22"
+  }
+}

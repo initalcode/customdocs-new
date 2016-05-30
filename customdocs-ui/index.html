@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<meta charset="UTF-8">
+<title>New App</title>
+<head>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+	<link href="bower_components/bootstrapflately.css" rel="stylesheet">
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/file-saver.js/FileSaver.js"></script>
+  <link rel="stylesheet" href="bower_components\bootstrap\dist\css\bootstrap.css">
+  <script src="app.js"></script>
+  <script src="config.js"></script>
+  <script src="controllers.js"></script>
+  <script src="factories.js"></script>
+  <script src="directives.js"></script>
+  <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+  <link rel="stylesheet" type="text/css" href="bower_components/angular-ui-grid/ui-grid.css"/>
+  <link rel="stylesheet" type="text/css" href="styles.css"/>
+	
+</head>
+<body class="container">
+<!-- TEST -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand"  href="#/dashboard">Home</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#/patients">Patients <span class="sr-only">(current)</span></a></li>
+        <li><a href="#/doctors">Doctors</a></li>
+        <li><a href="#/insurances">Insurances</a></li>
+        <li><a href="#/facilities">Facilities</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Add <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#/patient">New Patient</a></li>
+            <li><a href="#/doctor">New Doctor</a></li>
+            <li><a href="#/insurance">New Insurance</a></li>
+            <li><a href="#/facility">New Facility</a></li>
+           <!--  <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li> -->
+          </ul>
+        </li>
+      </ul>
+    <!--  
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+      </ul> -->
+    </div>
+  </div>
+</nav>
+<div ng-view col-span="12">
+	
+</div>
+</body>
+
+</html>
